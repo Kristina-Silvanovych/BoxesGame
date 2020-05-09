@@ -1,0 +1,9 @@
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\bin\Debug\Boxes.exe.config
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\bin\Debug\Boxes.exe
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\bin\Debug\Boxes.pdb
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.csprojResolveAssemblyReference.cache
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.Form1.resources
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.Properties.Resources.resources
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.csproj.GenerateResource.Cache
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.exe
+D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.pdb
