@@ -91,5 +91,10 @@ namespace Boxes
             }
             game.Refresh();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
