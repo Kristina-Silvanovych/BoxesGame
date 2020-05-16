@@ -7,3 +7,13 @@ D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.Properties.Resour
 D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.csproj.GenerateResource.Cache
 D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.exe
 D:\КРИСТИНА\CSharpUnity\C#\Boxes\Boxes\obj\Debug\Boxes.pdb
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\obj\Debug\Boxes.csprojAssemblyReference.cache
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\obj\Debug\Boxes.Form1.resources
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\obj\Debug\Boxes.Properties.Resources.resources
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\obj\Debug\Boxes.csproj.GenerateResource.cache
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\obj\Debug\Boxes.csproj.CoreCompileInputs.cache
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\obj\Debug\Boxes.exe
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\obj\Debug\Boxes.pdb
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\bin\Debug\Boxes.exe.config
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\bin\Debug\Boxes.exe
+D:\docs\kit\progs\students progs\Kristina\Boxes\Boxes\bin\Debug\Boxes.pdb

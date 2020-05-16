@@ -24,7 +24,7 @@ namespace Boxes
             {
                 foreach (var suit in Enum.GetValues(typeof(CardSuit)))
                 {
-                    Cards.Add(new GraphicCard((CardSuit)suit, (CardFigure)figure));
+                    Cards.Add(new GraphicCard( (CardFigure)figure, (CardSuit)suit));
                 }
             }
 
