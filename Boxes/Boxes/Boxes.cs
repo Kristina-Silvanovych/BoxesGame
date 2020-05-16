@@ -8,18 +8,20 @@ namespace Boxes
 {
     class Boxes
     {
-        public Boxes(CardSet deck, CardSet table, params Player[] players)
+        public Boxes(CardSet deck, params Player[] players)
         {
             Deck = deck;
-            Table = table;
             Players = new List<Player>(players);
             ActivePlayer = players[0];
         }
 
         public CardSet Deck { get; set; }
-        public CardSet Table { get; set; }
         public List<Player> Players { get; set; }
         public Player ActivePlayer { get; set; }
+        public Player PassivePlayer { get; set; }
+
+        public Action<Player> SelectActivePlayer;
+        public Action<string> Message;
 
         public void Deal()
         {
@@ -29,6 +31,8 @@ namespace Boxes
                 item.PlayerCards.Add(Deck.Deal(4));
             }
             Refresh();
+            ActivePlayer = Players[0];
+            PassivePlayer = Players[1];
         }
 
         public void Refresh()
@@ -37,8 +41,18 @@ namespace Boxes
             {
                 item.PlayerCards.Show();
             }
-            Table.Show();
         }
+
+        //NextPlayer(Player player)
+
+        //bool Request( Answ answ)
+        //SelectActivePlayer(activePlayer)
+        //if(Answer.amount==0 || f)
+
+
+        //CheckBoxes()
+
+        //CheckEnd()
 
     }
 }

@@ -15,6 +15,15 @@ namespace Boxes
         //{
         //    comboBox1.Items.Add(((CardFigure)figure).ToString());
         //}
+
+        CardFigure figure;
+        int amount;
+        List<CardSuit> suits;
+
+        publuc bool IsFull()
+        {
+            
+        }
     }
 }
 
