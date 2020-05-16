@@ -29,7 +29,7 @@ namespace Boxes
             {
                 foreach (var suit in Enum.GetValues(typeof(CardSuit)))
                 {
-                    Cards.Add(new Card((CardSuit)suit), (CardFigure)figure);
+                    Cards.Add(new Card((CardSuit)suit, (CardFigure)figure));
                 }
             }
             if (count < Count)

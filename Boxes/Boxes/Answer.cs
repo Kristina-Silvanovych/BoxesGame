@@ -10,11 +10,11 @@ namespace Boxes
 {
     class Answer
     {
-        public List<string> list { get; set; }
-        foreach(var figure in Enum.GetValues(typeof(CardFigure)))
-        {
-            comboBox1.Items.Add(((CardFigure)figure).ToString());
-        }
+        //public List<string> list { get; set; }
+        //foreach(var figure in Enum.GetValues(typeof(CardFigure)))
+        //{
+        //    comboBox1.Items.Add(((CardFigure)figure).ToString());
+        //}
     }
 }
 
