@@ -15,12 +15,20 @@ namespace Boxes
             ActivePlayer = players[0];
         }
 
+        public int Count
+        {
+            get { return Players.Count; }
+        }
+
         public CardSet Deck { get; set; }
         public List<Player> Players { get; set; }
         public Player ActivePlayer { get; set; }
         public Player PassivePlayer { get; set; }
 
         public Action<Player> SelectActivePlayer;
+
+        public Action<Player> SelectPassivePlayer;
+
         public Action<string> Message;
 
         public void Deal()
@@ -43,16 +51,45 @@ namespace Boxes
             }
         }
 
-        //NextPlayer(Player player)
+        public Player NextPlayer(Player player)
+        {
+                if (player == Players.Count - 1)
+                {
+                    return Players[0];
+;               }
+                
+                else 
+                {
+                    int index = Players.IndexOf(player);
+                    return Players[index + 1];
+                }
+        }
 
-        //bool Request( Answ answ)
+        public bool Request(Answer answer)
+        {
+            if (IsFull == false)
+            { 
+            
+            }
+        }
         //SelectActivePlayer(activePlayer)
-        //if(Answer.amount==0 || f)
 
 
-        //CheckBoxes()
+        public void CheckBoxes(CardSet card)
+        {
+            if ()
+            { 
+            
+            }
+        }
 
-        //CheckEnd()
-
+        public int CheckEnd(CardSet card)
+        {
+            for (int acc = 0; acc <= card.CheckBoxes(); acc++)
+            {
+                return acc;
+            }
+            return 0;
+        }
     }
 }

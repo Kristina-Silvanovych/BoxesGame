@@ -20,5 +20,10 @@ namespace Boxes
         {
             PlayerCards = cardSet;
         }
+
+        public static explicit operator Player(int v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,13 +16,34 @@ namespace Boxes
         //    comboBox1.Items.Add(((CardFigure)figure).ToString());
         //}
 
-        CardFigure figure;
-        int amount;
-        List<CardSuit> suits;
+        public CardFigure figure;
+        public static int amount;
+        public List<CardSuit> suits;
 
-        publuc bool IsFull()
+        public Answer(CardFigure Figure)
         {
-            
+            figure = Figure;
+        }
+
+        public Answer(CardFigure Figure, int Amount)
+        {
+            figure = Figure;
+            amount = Amount;
+        }
+
+        public Answer(CardFigure Figure, int Amount, List<CardSuit> Suits)
+        {
+            figure = Figure;
+            amount = Amount;
+            suits = Suits;
+        }
+
+        public bool IsFull()
+        {
+            if (amount == 0)
+                return false;
+            else 
+                return true;
         }
     }
 }
