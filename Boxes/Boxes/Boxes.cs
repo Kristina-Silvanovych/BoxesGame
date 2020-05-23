@@ -53,7 +53,7 @@ namespace Boxes
 
         public Player NextPlayer(Player player)
         {
-                if (player == Players.Count - 1)
+                if (player == Players[Count - 1])
                 {
                     return Players[0];
 ;               }
@@ -67,13 +67,20 @@ namespace Boxes
 
         public bool Request(Answer answer)
         {
-            if (IsFull == false)
-            { 
-            
+            if (!answer.IsFull())
+            {
+                return false;
             }
+            else
+            {
+                if ()
+                {
+                    SelectPassivePlayer(PassivePlayer);
+                }
+                else SelectActivePlayer(ActivePlayer);
+            }
+            return false;
         }
-        //SelectActivePlayer(activePlayer)
-
 
         public void CheckBoxes(CardSet card)
         {
