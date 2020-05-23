@@ -47,32 +47,6 @@ namespace Boxes
             return String.Format("{0} {1}", Figure, Suit);
         }
 
-        public int BoxesValue()
-        {
-            switch (Figure)
-            {
-                case CardFigure.six:
-                    return 6;
-                case CardFigure.seven:
-                    return 7;
-                case CardFigure.eight:
-                    return 8;
-                case CardFigure.nine:
-                    return 9;
-                case CardFigure.ten:
-                    return 10;
-                case CardFigure.Queen:
-                    return 10;
-                case CardFigure.King:
-                    return 10;
-                case CardFigure.Jack:
-                    return 10;
-                case CardFigure.Ace:
-                    return 10;
-                default:
-                    return 0;
-            }
-        }
     }
 }
 

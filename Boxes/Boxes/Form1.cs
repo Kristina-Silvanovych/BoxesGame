@@ -60,9 +60,10 @@ namespace Boxes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            game = new Boxes(new GraphicsCardSet(pnlTable), new GraphicsCardSet(pnlDeck, 36),
+            game = new Boxes(new GraphicsCardSet(pnlTable), new GraphicsCardSet(pnlDeck,36),
                 new Player("Bob", new GraphicsCardSet(pnlPlayer1)), new Player("Tom", new GraphicsCardSet(pnlPlayer2)));
             game.Deal();
+            //game.Request(new Answer);
         }
 
         private void CardPictureBox_Click(object sender, EventArgs e)

@@ -10,6 +10,7 @@ namespace Boxes
     {
         public string Name { get; set; }
         public CardSet PlayerCards { get; set; }
+        public int Point { get; set; }
         public Player(string name)
         {
             Name = name;
@@ -18,6 +19,11 @@ namespace Boxes
         public Player(string name, CardSet cardSet) : this(name)
         {
             PlayerCards = cardSet;
+        }
+
+        public static explicit operator Player(int v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
