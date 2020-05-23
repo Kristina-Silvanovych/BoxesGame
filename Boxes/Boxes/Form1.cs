@@ -63,7 +63,7 @@ namespace Boxes
             game = new Boxes(new GraphicsCardSet(pnlTable), new GraphicsCardSet(pnlDeck,36),
                 new Player("Bob", new GraphicsCardSet(pnlPlayer1)), new Player("Tom", new GraphicsCardSet(pnlPlayer2)));
             game.Deal();
-            //game.Request(new Answer);
+            game.Request(new Question(CardFigure.nine));
         }
 
         private void CardPictureBox_Click(object sender, EventArgs e)

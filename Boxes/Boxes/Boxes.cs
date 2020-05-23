@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Boxes
 {
     class Boxes
     {
-        public Boxes(CardSet deck, params Player[] players)
+        public Boxes(CardSet Table, CardSet deck, params Player[] players)
         {
             Deck = deck;
             Players = new List<Player>(players);
@@ -44,11 +45,15 @@ namespace Boxes
         }
 
         public void Refresh()
-        {
+        {    
+            CheckBoxes();
+            CheckEnd();
             foreach (var item in Players)
             {
                 item.PlayerCards.Show();
             }
+
+
         }
 
         public Player NextPlayer(Player player)
@@ -65,33 +70,58 @@ namespace Boxes
                 }
         }
 
-        public bool Request(Answer answer)
+        public bool Request(Question que)
         {
-            if (!answer.IsFull())
+            List<Card> passivePlayerCard = PassivePlayer.PlayerCards.Cards;
+
+            if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure) == null)
             {
+                ActivePlayer = NextPlayer(ActivePlayer);
+                Refresh();
                 return false;
             }
-            else
+
+            if (que.amount!=0 &&  passivePlayerCard.Count(c => c.Figure==que.figure) == 0)
             {
-                if ()
+                ActivePlayer = NextPlayer(ActivePlayer);
+                Refresh();
+                return false;
+            }
+
+            if (que.IsFull())
+            {
+                foreach (var suit in que.suits)
                 {
-                    SelectPassivePlayer(PassivePlayer);
+                    if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure && c.Suit == suit) == null)
+                    {
+                        ActivePlayer = NextPlayer(ActivePlayer);
+                        Refresh();
+                        return false;
+                    }
                 }
-                else SelectActivePlayer(ActivePlayer);
+
+                foreach (var suit in que.suits)
+                {
+                    ActivePlayer.PlayerCards.Add(PassivePlayer.PlayerCards.Pull(new Card(suit, que.figure)));
+                    PassivePlayer = NextPlayer(PassivePlayer);
+                    if (PassivePlayer == ActivePlayer) PassivePlayer = NextPlayer(PassivePlayer);
+                    Refresh();
+                }
+                return true;
             }
-            return false;
+
+            return true;
+
         }
 
-        public void CheckBoxes(CardSet card)
+        public void CheckBoxes()
         {
-            if ()
-            { 
-            
-            }
+            //проверить всех игроков, есть ли 4 карты одной фигуры и если да, сбросить их и добавить баллы
         }
 
-        public int CheckEnd(CardSet card)
+        public int CheckEnd()
         {
+            //перебрать игроков, проверить, есть ли пустой, если есть, то определить победителя по баллам
             for (int acc = 0; acc <= card.CheckBoxes(); acc++)
             {
                 return acc;
