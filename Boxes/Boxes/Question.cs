@@ -8,7 +8,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Boxes
 {
-    class Answer
+    class Question
     {
         //public List<string> list { get; set; }
         //foreach(var figure in Enum.GetValues(typeof(CardFigure)))
@@ -17,21 +17,21 @@ namespace Boxes
         //}
 
         public CardFigure figure;
-        public static int amount;
+        public int amount;
         public List<CardSuit> suits;
 
-        public Answer(CardFigure Figure)
+        public Question(CardFigure Figure)
         {
             figure = Figure;
         }
 
-        public Answer(CardFigure Figure, int Amount)
+        public Question(CardFigure Figure, int Amount)
         {
             figure = Figure;
             amount = Amount;
         }
 
-        public Answer(CardFigure Figure, int Amount, List<CardSuit> Suits)
+        public Question(CardFigure Figure, int Amount, List<CardSuit> Suits)
         {
             figure = Figure;
             amount = Amount;
@@ -40,10 +40,7 @@ namespace Boxes
 
         public bool IsFull()
         {
-            if (amount == 0)
-                return false;
-            else 
-                return true;
+            return suits.Count != 0;
         }
     }
 }
