@@ -45,7 +45,7 @@ namespace Boxes
         }
 
         public void Refresh()
-        {    
+        {
             CheckBoxes();
             CheckEnd();
             foreach (var item in Players)
@@ -58,16 +58,17 @@ namespace Boxes
 
         public Player NextPlayer(Player player)
         {
-                if (player == Players[Count - 1])
-                {
-                    return Players[0];
-;               }
-                
-                else 
-                {
-                    int index = Players.IndexOf(player);
-                    return Players[index + 1];
-                }
+            if (player == Players[Count - 1])
+            {
+                return Players[0];
+                ;
+            }
+
+            else
+            {
+                int index = Players.IndexOf(player);
+                return Players[index + 1];
+            }
         }
 
         public bool Request(Question que)
@@ -81,7 +82,7 @@ namespace Boxes
                 return false;
             }
 
-            if (que.amount!=0 &&  passivePlayerCard.Count(c => c.Figure==que.figure) == 0)
+            if (que.amount != 0 && passivePlayerCard.Count(c => c.Figure == que.figure) == 0)
             {
                 ActivePlayer = NextPlayer(ActivePlayer);
                 Refresh();
@@ -117,16 +118,30 @@ namespace Boxes
         public void CheckBoxes()
         {
             //проверить всех игроков, есть ли 4 карты одной фигуры и если да, сбросить их и добавить баллы
+            List<Card> PlayerCard = Players.PlayerCards.Cards;
+            int acc = 0;
+            foreach (var p in Players)
+            {
+                if (PlayerCard.Count(c => c.Figure ==  && c.Suit == ))
+                {
+                    p.PlayerCards.Deal(c);
+                    acc++;
+                }
+            }
         }
 
-        public int CheckEnd()
+        public void CheckEnd()
         {
             //перебрать игроков, проверить, есть ли пустой, если есть, то определить победителя по баллам
-            for (int acc = 0; acc <= card.CheckBoxes(); acc++)
+            List <Player> playerPoints = CheckBoxes(Players.Cards);
+            foreach (var p in Players)
             {
-                return acc;
+                if (p.PlayerCards == null)
+                {
+
+                }
+                MessageBox.Show("Congratulations! " + p + "is Winner!!!");
             }
-            return 0;
         }
     }
 }
