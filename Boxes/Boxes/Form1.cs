@@ -18,6 +18,11 @@ namespace Boxes
         public Form1()
         {
             InitializeComponent();
+
+            foreach (var figure in Enum.GetValues(typeof(CardFigure)))
+            {
+                comboBox1.Items.Add(figure.ToString());
+            }
         }
 
         private void SetActiveCard(PictureBox pictureBox)
@@ -62,8 +67,9 @@ namespace Boxes
         {
             game = new Boxes(new GraphicsCardSet(pnlTable), new GraphicsCardSet(pnlDeck,36),
                 new Player("Bob", new GraphicsCardSet(pnlPlayer1)), new Player("Tom", new GraphicsCardSet(pnlPlayer2)));
+            game.SelectActivePlayer = MarkPlayer;
+
             game.Deal();
-            game.Request(new Question(CardFigure.nine));
         }
 
         private void CardPictureBox_Click(object sender, EventArgs e)
@@ -71,7 +77,7 @@ namespace Boxes
             PictureBox pictureBox = (PictureBox)sender;
             SetActiveCard(pictureBox);
         }
-
+        //markPassive player
         private void MarkPlayer(Player activePlayer)
         {
             foreach (var player in game.Players)
@@ -90,7 +96,20 @@ namespace Boxes
                     }
 
             }
-            game.Refresh();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //формирование Question по эл.управления
+            //вызов game.Request(Que)
+            CardFigure cardFigure = 0;
+            foreach (var figure in Enum.GetValues(typeof(CardFigure)))
+            {
+                if (comboBox1.Text == ((CardFigure)figure).ToString())
+                    cardFigure = (CardFigure)figure;
+            }
+
+            game.Request(new Question(cardFigure));
         }
     }
 }

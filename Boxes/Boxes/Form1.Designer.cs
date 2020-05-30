@@ -36,28 +36,29 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.pnlTable = new System.Windows.Forms.Panel();
             this.pnlDeck = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pnlPlayer1
             // 
-            this.pnlPlayer1.Location = new System.Drawing.Point(7, 22);
-            this.pnlPlayer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlPlayer1.Location = new System.Drawing.Point(46, 67);
+            this.pnlPlayer1.Margin = new System.Windows.Forms.Padding(4);
             this.pnlPlayer1.Name = "pnlPlayer1";
-            this.pnlPlayer1.Size = new System.Drawing.Size(939, 316);
+            this.pnlPlayer1.Size = new System.Drawing.Size(900, 271);
             this.pnlPlayer1.TabIndex = 0;
             // 
             // pnlPlayer2
             // 
-            this.pnlPlayer2.Location = new System.Drawing.Point(9, 346);
-            this.pnlPlayer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlPlayer2.Location = new System.Drawing.Point(9, 451);
+            this.pnlPlayer2.Margin = new System.Windows.Forms.Padding(4);
             this.pnlPlayer2.Name = "pnlPlayer2";
-            this.pnlPlayer2.Size = new System.Drawing.Size(935, 337);
+            this.pnlPlayer2.Size = new System.Drawing.Size(802, 232);
             this.pnlPlayer2.TabIndex = 1;
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(975, 22);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 28);
             this.button1.TabIndex = 2;
@@ -69,7 +70,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(975, 91);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(96, 24);
             this.comboBox1.TabIndex = 3;
@@ -78,8 +79,13 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
             this.comboBox2.Location = new System.Drawing.Point(975, 137);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(96, 24);
             this.comboBox2.TabIndex = 4;
@@ -89,7 +95,7 @@
             // 
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(975, 177);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(96, 24);
             this.comboBox3.TabIndex = 5;
@@ -105,17 +111,28 @@
             // 
             // pnlDeck
             // 
-            this.pnlDeck.Location = new System.Drawing.Point(975, 409);
+            this.pnlDeck.Location = new System.Drawing.Point(977, 493);
             this.pnlDeck.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDeck.Name = "pnlDeck";
             this.pnlDeck.Size = new System.Drawing.Size(242, 134);
             this.pnlDeck.TabIndex = 7;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(977, 395);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1232, 692);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.pnlDeck);
             this.Controls.Add(this.pnlTable);
             this.Controls.Add(this.comboBox3);
@@ -124,7 +141,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pnlPlayer2);
             this.Controls.Add(this.pnlPlayer1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -142,6 +159,7 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Panel pnlTable;
         private System.Windows.Forms.Panel pnlDeck;
+        private System.Windows.Forms.Button button2;
     }
 }
 

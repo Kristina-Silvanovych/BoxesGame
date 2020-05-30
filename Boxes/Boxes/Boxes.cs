@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -78,6 +79,7 @@ namespace Boxes
             if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure) == null)
             {
                 ActivePlayer = NextPlayer(ActivePlayer);
+                ActivePlayer.PlayerCards.Add(Deck.Pull());
                 Refresh();
                 return false;
             }
@@ -85,6 +87,7 @@ namespace Boxes
             if (que.amount != 0 && passivePlayerCard.Count(c => c.Figure == que.figure) == 0)
             {
                 ActivePlayer = NextPlayer(ActivePlayer);
+                ActivePlayer.PlayerCards.Add(Deck.Pull());
                 Refresh();
                 return false;
             }
@@ -96,6 +99,7 @@ namespace Boxes
                     if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure && c.Suit == suit) == null)
                     {
                         ActivePlayer = NextPlayer(ActivePlayer);
+                        ActivePlayer.PlayerCards.Add(Deck.Pull());
                         Refresh();
                         return false;
                     }
@@ -117,36 +121,33 @@ namespace Boxes
 
         public void CheckBoxes()
         {
-            //проверить всех игроков, есть ли 4 карты одной фигуры и если да, сбросить их и добавить баллы
-            List<Card> PlayerCard = Players.PlayerCards.Cards;
+
             foreach (var p in Players)
-            {
-                int acc = 0;
-                int max = int.MinValue;
-                if (PlayerCard.Count(c => c.Figure ==  && c.Suit == ))
+            {    
+                List<Card> PlayerCard = p.PlayerCards.Cards;
+
+                foreach (var figure in Enum.GetValues(typeof(CardFigure)))
                 {
-                    p.PlayerCards.Deal(c);
-                    acc++;
-                    if (acc > max)
+                    if (PlayerCard.Count(c => c.Figure == (CardFigure)figure)==4)
                     {
-                        max = acc;
+                        PlayerCard.RemoveAll(c => c.Figure == (CardFigure)figure);
+                        p.Point++;
                     }
-                }             
+                }
+           
             }
         }
 
         public void CheckEnd()
         {
             //перебрать игроков, проверить, есть ли пустой, если есть, то определить победителя по баллам
-            List <Player> playerPoints = CheckBoxes(Players.Cards);
+            
             foreach (var p in Players)
             {
-                if (p.PlayerCards == null)
-                {
-                    CheckBoxes();
-                    MessageBox.Show("Congratulations! " + p + "is Winner!!!");
-                }
+                if (p.PlayerCards.Cards.Count != 0) return;
             }
+            //попробуй разобраться с Max
+            //Player winner = Players.Max(Players.FiPoint);
         }
     }
 }
