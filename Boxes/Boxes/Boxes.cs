@@ -119,14 +119,19 @@ namespace Boxes
         {
             //проверить всех игроков, есть ли 4 карты одной фигуры и если да, сбросить их и добавить баллы
             List<Card> PlayerCard = Players.PlayerCards.Cards;
-            int acc = 0;
             foreach (var p in Players)
             {
+                int acc = 0;
+                int max = int.MinValue;
                 if (PlayerCard.Count(c => c.Figure ==  && c.Suit == ))
                 {
                     p.PlayerCards.Deal(c);
                     acc++;
-                }
+                    if (acc > max)
+                    {
+                        max = acc;
+                    }
+                }             
             }
         }
 
@@ -138,9 +143,9 @@ namespace Boxes
             {
                 if (p.PlayerCards == null)
                 {
-
+                    CheckBoxes();
+                    MessageBox.Show("Congratulations! " + p + "is Winner!!!");
                 }
-                MessageBox.Show("Congratulations! " + p + "is Winner!!!");
             }
         }
     }
