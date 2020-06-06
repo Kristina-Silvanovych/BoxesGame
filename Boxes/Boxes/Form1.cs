@@ -67,7 +67,7 @@ namespace Boxes
         {
             game = new Boxes(new GraphicsCardSet(pnlTable), new GraphicsCardSet(pnlDeck,36),
                 new Player("Bob", new GraphicsCardSet(pnlPlayer1)), new Player("Tom", new GraphicsCardSet(pnlPlayer2)));
-            game.SelectActivePlayer = MarkPlayer;
+            game.SelectActivePlayer = MarkAcPlayer;
 
             game.Deal();
         }
@@ -77,8 +77,20 @@ namespace Boxes
             PictureBox pictureBox = (PictureBox)sender;
             SetActiveCard(pictureBox);
         }
-        //markPassive player
-        private void MarkPlayer(Player activePlayer)
+
+        private void MarkPasPlayer(Player passivePlayer)
+        {
+            foreach (var player in game.Players)
+            {
+                if (player == passivePlayer)
+                    foreach (var card in player.PlayerCards.Cards)
+                    {
+                        GraphicCard graphicCard = (GraphicCard)card;
+                        graphicCard.Opened = false;
+                    }
+            }
+        }
+        private void MarkAcPlayer(Player activePlayer)
         {
             foreach (var player in game.Players)
             {
@@ -88,28 +100,37 @@ namespace Boxes
                         GraphicCard graphicCard = (GraphicCard)card;
                         graphicCard.Opened = true;
                     }
-                else
-                    foreach (var card in player.PlayerCards.Cards)
-                    {
-                        GraphicCard graphicCard = (GraphicCard)card;
-                        graphicCard.Opened = false;
-                    }
-
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //формирование Question по эл.управления
-            //вызов game.Request(Que)
             CardFigure cardFigure = 0;
+            List<CardSuit> suits = new List<CardSuit>(); 
+            int amount = 1;
+            int[] amounts = new int[4] { 1,2,3,4 };
             foreach (var figure in Enum.GetValues(typeof(CardFigure)))
             {
                 if (comboBox1.Text == ((CardFigure)figure).ToString())
                     cardFigure = (CardFigure)figure;
             }
-
             game.Request(new Question(cardFigure));
+
+            foreach (int a in amounts)
+            {
+                if (comboBox2.Text == ((int)a).ToString())
+                    amount = (int)a;
+            }
+            game.Request(new Question(cardFigure, amount));
+
+            foreach (var suit in Enum.GetValues(typeof(CardSuit)))
+            {
+                if (checkBox1.Text == ((CardSuit)suit).ToString() || checkBox2.Text == ((CardSuit)suit).ToString() 
+                    || checkBox3.Text == ((CardSuit)suit).ToString() || checkBox4.Text == ((CardSuit)suit).ToString())
+                    suits = (CardSuit)Suits;
+            }         
+            game.Request(new Question(cardFigure, amount, suits));
+
         }
     }
 }
