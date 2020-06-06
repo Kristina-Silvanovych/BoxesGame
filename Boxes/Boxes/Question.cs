@@ -9,16 +9,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace Boxes
 {
     class Question
-    {
-        //public List<string> list { get; set; }
-        //foreach(var figure in Enum.GetValues(typeof(CardFigure)))
-        //{
-        //    comboBox1.Items.Add(((CardFigure)figure).ToString());
-        //}
-
-        public CardFigure figure;
-        public int amount;
-        public List<CardSuit> suits;
+    { 
+        public CardFigure figure { get; set; }
+        public int amount { get; set; }
+        public List<CardSuit> Suits { get; set; }
 
         public Question(CardFigure Figure)
         {
@@ -31,7 +25,7 @@ namespace Boxes
             amount = Amount;
         }
 
-        public Question(CardFigure Figure, int Amount, List<CardSuit> Suits)
+        public Question(CardFigure Figure, int Amount, List<CardSuit> suits)
         {
             figure = Figure;
             amount = Amount;
