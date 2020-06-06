@@ -72,40 +72,40 @@ namespace Boxes
             }
         }
 
+        public void Req()
+        {
+            ActivePlayer = NextPlayer(ActivePlayer);
+            ActivePlayer.PlayerCards.Add(Deck.Pull());
+            Refresh();
+        }
         public bool Request(Question que)
         {
             List<Card> passivePlayerCard = PassivePlayer.PlayerCards.Cards;
 
             if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure) == null)
             {
-                ActivePlayer = NextPlayer(ActivePlayer);
-                ActivePlayer.PlayerCards.Add(Deck.Pull());
-                Refresh();
+                Req();
                 return false;
             }
 
             if (que.amount != 0 && passivePlayerCard.Count(c => c.Figure == que.figure) == 0)
             {
-                ActivePlayer = NextPlayer(ActivePlayer);
-                ActivePlayer.PlayerCards.Add(Deck.Pull());
-                Refresh();
+                Req();
                 return false;
             }
 
             if (que.IsFull())
             {
-                foreach (var suit in que.suits)
+                foreach (var suit in que.Suits)
                 {
                     if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure && c.Suit == suit) == null)
                     {
-                        ActivePlayer = NextPlayer(ActivePlayer);
-                        ActivePlayer.PlayerCards.Add(Deck.Pull());
-                        Refresh();
+                        Req();
                         return false;
                     }
                 }
 
-                foreach (var suit in que.suits)
+                foreach (var suit in que.Suits)
                 {
                     ActivePlayer.PlayerCards.Add(PassivePlayer.PlayerCards.Pull(new Card(suit, que.figure)));
                     PassivePlayer = NextPlayer(PassivePlayer);
@@ -147,7 +147,7 @@ namespace Boxes
                 if (p.PlayerCards.Cards.Count != 0) return;
             }
             //попробуй разобраться с Max
-            Player winner = Players.Max();
+            //Player winner = Players.Max(Players.FiPoint);
         }
     }
 }
