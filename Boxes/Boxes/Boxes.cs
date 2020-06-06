@@ -147,7 +147,7 @@ namespace Boxes
                 if (p.PlayerCards.Cards.Count != 0) return;
             }
             //попробуй разобраться с Max
-            //Player winner = Players.Max(Players.FiPoint);
+            Player winner = Players.Max();
         }
     }
 }

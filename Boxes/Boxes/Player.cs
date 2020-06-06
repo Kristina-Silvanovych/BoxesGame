@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Boxes
 {
-    class Player
+    class Player: IComparable<Player>
     {
         public string Name { get; set; }
         public CardSet PlayerCards { get; set; }
@@ -21,9 +21,9 @@ namespace Boxes
             PlayerCards = cardSet;
         }
 
-        public static explicit operator Player(int v)
+        public int CompareTo(Player other)
         {
-            throw new NotImplementedException();
+            return Point.CompareTo(other.Point);
         }
     }
 }
