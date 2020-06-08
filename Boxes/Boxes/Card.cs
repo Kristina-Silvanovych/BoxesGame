@@ -47,6 +47,26 @@ namespace Boxes
             return String.Format("{0} {1}", Figure, Suit);
         }
 
+        public static CardFigure GetFigure(string figureString)
+        {
+            foreach (var figure in Enum.GetValues(typeof(CardFigure)))
+            {
+                if (figureString == ((CardFigure)figure).ToString())
+                    return (CardFigure)figure;
+            }
+            throw new Exception();
+        }
+
+        public static CardSuit GetSuit(string suitString)
+        {
+            foreach (var suit in Enum.GetValues(typeof(CardSuit)))
+            {
+                if (suitString == ((CardSuit)suit).ToString())
+                    return (CardSuit)suit;
+            }
+            throw new Exception();
+        }
+
     }
 }
 

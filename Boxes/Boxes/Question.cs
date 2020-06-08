@@ -29,12 +29,12 @@ namespace Boxes
         {
             figure = Figure;
             amount = Amount;
-            suits = Suits;
+            Suits = suits;
         }
 
         public bool IsFull()
         {
-            return suits.Count != 0;
+            return Suits.Count != 0;
         }
     }
 }
