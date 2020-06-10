@@ -24,3 +24,6 @@ D:\КРИСТИНА\CSharpUnity\C#\BoxesGame\Boxes\Boxes\obj\Debug\Boxes.csproj.
 D:\КРИСТИНА\CSharpUnity\C#\BoxesGame\Boxes\Boxes\obj\Debug\Boxes.csproj.CoreCompileInputs.cache
 D:\КРИСТИНА\CSharpUnity\C#\BoxesGame\Boxes\Boxes\obj\Debug\Boxes.exe
 D:\КРИСТИНА\CSharpUnity\C#\BoxesGame\Boxes\Boxes\obj\Debug\Boxes.pdb
+D:\КРИСТИНА\CSharpUnity\C#\BoxesGame\Boxes\Boxes\bin\Debug\Boxes.exe.config
+D:\КРИСТИНА\CSharpUnity\C#\BoxesGame\Boxes\Boxes\bin\Debug\Boxes.exe
+D:\КРИСТИНА\CSharpUnity\C#\BoxesGame\Boxes\Boxes\bin\Debug\Boxes.pdb
