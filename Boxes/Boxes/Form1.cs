@@ -21,7 +21,7 @@ namespace Boxes
 
             foreach (var figure in Enum.GetValues(typeof(CardFigure)))
             {
-                comboBox1.Items.Add(figure.ToString());
+                cmbFigure.Items.Add(figure.ToString());
             }
         }
 
@@ -60,8 +60,8 @@ namespace Boxes
 
         public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Go.Enabled = comboBox1.Text != "";
-            comboBox2.Visible = comboBox1.Text != "";
+            Go.Enabled = cmbFigure.Text != "";
+            cmbAmount.Visible = cmbFigure.Text != "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,10 +90,12 @@ namespace Boxes
         private void MarkPasPlayer(Player passivePlayer)
         {
             GraphicsCardSet passivePlayerCards = (GraphicsCardSet)passivePlayer.PlayerCards;
-            passivePlayerCards.Panel.BackColor = Color.Red;
+            passivePlayerCards.Panel.BorderStyle = BorderStyle.FixedSingle;
         }
         private void MarkAcPlayer(Player activePlayer)
         {
+            GraphicsCardSet activePlayerCards = (GraphicsCardSet)activePlayer.PlayerCards;
+            activePlayerCards.Panel.BorderStyle = BorderStyle.Fixed3D;
             foreach (var player in game.Players)
             {
                 if (player == activePlayer)
@@ -115,13 +117,10 @@ namespace Boxes
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CardFigure cardFigure = Card.GetFigure(comboBox1.Text);
+            CardFigure cardFigure = Card.GetFigure(cmbFigure.Text);
 
             List<CardSuit> suits = new List<CardSuit>();
-            int amount = 1;
-            int[] amounts = new int[4] { 1, 2, 3, 4 };
-
-            if (comboBox2.Text == "")
+            if (cmbAmount.Text == "")
             {
                 game.Request(new Question(cardFigure));
                 return;
@@ -132,12 +131,14 @@ namespace Boxes
                 CheckBox checkbox = (CheckBox)control;
                 if (checkbox.Checked)
                     suits.Add(Card.GetSuit(checkbox.Text));
+
+
+                if (suits.Count == 0)
+                    game.Request(new Question(cardFigure, Convert.ToInt32(checkBox2.Text)));
+                else
+                    game.Request(new Question(cardFigure, Convert.ToInt32(checkBox2.Text), suits));
             }
 
-            if (suits.Count == 0)
-                game.Request(new Question(cardFigure, Convert.ToInt32(checkBox2.Text)));
-            else
-                game.Request(new Question(cardFigure, amount, suits));
 
         }
 
@@ -148,7 +149,7 @@ namespace Boxes
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gbxSuits.Visible = comboBox2.Text != "";
+            gbxSuits.Visible = cmbAmount.Text != "";
         }
     }
 }

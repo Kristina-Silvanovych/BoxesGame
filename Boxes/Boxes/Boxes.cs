@@ -64,6 +64,10 @@ namespace Boxes
 
             SelectActivePlayer(ActivePlayer);
             SelectPassivePlayer(PassivePlayer);
+            //ComboBox comboBox1.Text = "";
+            //ComboBox comboBox2.Text = "";
+            //ComboBox comboBox2.Visible = false;
+
         }
 
         public Player NextPlayer(Player player)
@@ -101,6 +105,7 @@ namespace Boxes
             if (que.amount != 0 && passivePlayerCard.Count(c => c.Figure == que.figure) == 0)
             {
                 Req();
+                Message($"Player don't have {que.figure}");
                 return false;
             }
 
@@ -111,6 +116,7 @@ namespace Boxes
                     if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure && c.Suit == suit) == null)
                     {
                         Req();
+                        Message($"Player don't have {que.figure}");
                         return false;
                     }
                 }
@@ -122,9 +128,10 @@ namespace Boxes
                     if (PassivePlayer == ActivePlayer) PassivePlayer = NextPlayer(PassivePlayer);
                     Refresh();
                 }
+                Message($"Player have {que.figure}. Choose next.");
                 return true;
             }
-
+            Message($"Player have {que.figure}. Choose next.");
             return true;
 
         }
@@ -149,9 +156,7 @@ namespace Boxes
         }
 
         public void CheckEnd()
-        {
-            //перебрать игроков, проверить, есть ли пустой, если есть, то определить победителя по баллам
-            
+        {      
             foreach (var p in Players)
             {
                 if (p.PlayerCards.Cards.Count != 0) return;
