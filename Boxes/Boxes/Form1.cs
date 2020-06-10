@@ -99,13 +99,16 @@ namespace Boxes
             foreach (var player in game.Players)
             {
                 if (player == activePlayer)
+                {
                     foreach (var card in player.PlayerCards.Cards)
                     {
                         GraphicCard graphicCard = (GraphicCard)card;
                         graphicCard.Opened = true;
                     }
+                }
                 else
                 {
+                    ((GraphicsCardSet)player.PlayerCards).Panel.BorderStyle = BorderStyle.None;
                     foreach (var card in player.PlayerCards.Cards)
                     {
                         GraphicCard graphicCard = (GraphicCard)card;
@@ -118,28 +121,31 @@ namespace Boxes
         private void button2_Click(object sender, EventArgs e)
         {
             CardFigure cardFigure = Card.GetFigure(cmbFigure.Text);
+            bool right = false;
 
             List<CardSuit> suits = new List<CardSuit>();
             if (cmbAmount.Text == "")
             {
-                game.Request(new Question(cardFigure));
-                return;
+                right = game.Request(new Question(cardFigure));
             }
-
-            foreach (var control in gbxSuits.Controls)
+            else
             {
-                CheckBox checkbox = (CheckBox)control;
-                if (checkbox.Checked)
-                    suits.Add(Card.GetSuit(checkbox.Text));
-
-
+                foreach (var control in gbxSuits.Controls)
+                {
+                    CheckBox checkbox = (CheckBox)control;
+                    if (checkbox.Checked)
+                        suits.Add(Card.GetSuit(checkbox.Text));
+                }
                 if (suits.Count == 0)
-                    game.Request(new Question(cardFigure, Convert.ToInt32(checkBox2.Text)));
+                    right = game.Request(new Question(cardFigure, Convert.ToInt32(cmbAmount.Text)));
                 else
-                    game.Request(new Question(cardFigure, Convert.ToInt32(checkBox2.Text), suits));
+                    right = game.Request(new Question(cardFigure, Convert.ToInt32(cmbAmount.Text), suits));
             }
-
-
+            if (!right)
+            {
+                cmbAmount.Text = "";
+                cmbFigure.Text = "";
+            }
         }
 
         private void comboBox1_TextChanged(object sender, EventArgs e)
