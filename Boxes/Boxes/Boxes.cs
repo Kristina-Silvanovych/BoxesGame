@@ -10,9 +10,16 @@ namespace Boxes
 {
     class Boxes
     {
-        public Boxes(CardSet Table, CardSet deck, params Player[] players)
+        public Boxes(CardSet deck,
+            Action<Player> selectActivePlayer,
+            Action<Player> selectPassivePlayer,
+             Action<string> showMessage,
+            params Player[] players)
         {
             Deck = deck;
+            SelectActivePlayer = selectActivePlayer;
+            SelectPassivePlayer = selectPassivePlayer;
+            Message = showMessage;
             Players = new List<Player>(players);
             ActivePlayer = players[0];
         }
@@ -27,11 +34,11 @@ namespace Boxes
         public Player ActivePlayer { get; set; }
         public Player PassivePlayer { get; set; }
 
-        public Action<Player> SelectActivePlayer;
+        private Action<Player> SelectActivePlayer;
 
-        public Action<Player> SelectPassivePlayer;
+        private Action<Player> SelectPassivePlayer;
 
-        public Action<string> Message;
+        private  Action<string> Message;
 
         public void Deal()
         {
@@ -40,9 +47,10 @@ namespace Boxes
             {
                 item.PlayerCards.Add(Deck.Deal(4));
             }
-            Refresh();
+
             ActivePlayer = Players[0];
             PassivePlayer = Players[1];
+            Refresh();
         }
 
         public void Refresh()
@@ -54,7 +62,8 @@ namespace Boxes
                 item.PlayerCards.Show();
             }
 
-
+            SelectActivePlayer(ActivePlayer);
+            SelectPassivePlayer(PassivePlayer);
         }
 
         public Player NextPlayer(Player player)
@@ -62,7 +71,7 @@ namespace Boxes
             if (player == Players[Count - 1])
             {
                 return Players[0];
-                ;
+                
             }
 
             else
@@ -85,6 +94,7 @@ namespace Boxes
             if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure) == null)
             {
                 Req();
+                Message($"Player don't have {que.figure}");
                 return false;
             }
 
@@ -146,8 +156,9 @@ namespace Boxes
             {
                 if (p.PlayerCards.Cards.Count != 0) return;
             }
-            //попробуй разобраться с Max
-            //Player winner = Players.Max(Players.FiPoint);
+            
+            Player winner = Players.Max();
         }
+
     }
 }
