@@ -60,7 +60,7 @@ namespace Boxes
 
         public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Go.Enabled = cmbFigure.Text != "";
+            btncheck.Enabled = cmbFigure.Text != "";
             cmbAmount.Visible = cmbFigure.Text != "";
         }
 
@@ -71,9 +71,15 @@ namespace Boxes
                 new Player("Bob", new GraphicsCardSet(pnlPlayer1)),
                 new Player("Tom", new GraphicsCardSet(pnlPlayer2)),
                 new Player("Jack", new GraphicsCardSet(pnlPlayer3)),
-                new Player("Phill", new GraphicsCardSet(pnlPlayer4)));
+                new Player("Max", new GraphicsCardSet(pnlPlayer4)));
 
             game.Deal();
+            button1.Enabled = false;
+            lbl1.Text = "Bob";
+            lbl2.Text = "Tom";
+            lbl3.Text = "Jack";
+            lbl4.Text = "Max";
+
         }
 
         private void ShowMessage(string message)
@@ -145,6 +151,10 @@ namespace Boxes
             {
                 cmbAmount.Text = "";
                 cmbFigure.Text = "";
+                checkBox1.Checked = false;
+                checkBox2.Checked = false;
+                checkBox3.Checked = false;
+                checkBox4.Checked = false;
             }
         }
 

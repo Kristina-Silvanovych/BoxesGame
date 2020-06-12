@@ -64,10 +64,6 @@ namespace Boxes
 
             SelectActivePlayer(ActivePlayer);
             SelectPassivePlayer(PassivePlayer);
-            //ComboBox comboBox1.Text = "";
-            //ComboBox comboBox2.Text = "";
-            //ComboBox comboBox2.Visible = false;
-
         }
 
         public Player NextPlayer(Player player)
@@ -130,10 +126,10 @@ namespace Boxes
                 PassivePlayer = NextPlayer(PassivePlayer);
                 if (PassivePlayer == ActivePlayer) PassivePlayer = NextPlayer(PassivePlayer);
                 Refresh();
-                Message($"Player have these cards. Next Player");
+                Message($"Player have these cards. Next step");
                 return true;
             }
-            Message($"Player have. Choose next.");
+            Message($"Player have this card. Choose next.");
             return true;
 
         }
