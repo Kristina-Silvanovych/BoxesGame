@@ -34,7 +34,7 @@ namespace Boxes
 
         public bool IsFull()
         {
-            return Suits.Count != 0;
+            return Suits!=null && Suits.Count != 0;
         }
     }
 }

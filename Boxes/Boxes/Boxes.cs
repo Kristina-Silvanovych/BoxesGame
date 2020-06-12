@@ -87,8 +87,9 @@ namespace Boxes
 
         public void Req()
         {
-            ActivePlayer = NextPlayer(ActivePlayer);
             ActivePlayer.PlayerCards.Add(Deck.Pull());
+            ActivePlayer = NextPlayer(ActivePlayer);
+            PassivePlayer = NextPlayer(ActivePlayer);
             Refresh();
         }
         public bool Request(Question que)
@@ -102,10 +103,10 @@ namespace Boxes
                 return false;
             }
 
-            if (que.amount != 0 && passivePlayerCard.Count(c => c.Figure == que.figure) == 0)
+            if (que.amount != 0 && passivePlayerCard.Count(c => c.Figure == que.figure) != que.amount)
             {
                 Req();
-                Message($"Player don't have {que.figure}");
+                Message($"Player don't have {que.amount} {que.figure}");
                 return false;
             }
 
@@ -116,22 +117,23 @@ namespace Boxes
                     if (passivePlayerCard.FirstOrDefault(c => c.Figure == que.figure && c.Suit == suit) == null)
                     {
                         Req();
-                        Message($"Player don't have {que.figure}");
+                        Message($"Player have another set");
                         return false;
                     }
                 }
 
                 foreach (var suit in que.Suits)
                 {
-                    ActivePlayer.PlayerCards.Add(PassivePlayer.PlayerCards.Pull(new Card(suit, que.figure)));
-                    PassivePlayer = NextPlayer(PassivePlayer);
-                    if (PassivePlayer == ActivePlayer) PassivePlayer = NextPlayer(PassivePlayer);
-                    Refresh();
+                    ActivePlayer.PlayerCards.Add(PassivePlayer.PlayerCards.Pull(
+                        PassivePlayer.PlayerCards.Cards.FindIndex(c => c.Figure == que.figure && c.Suit == suit)));
                 }
-                Message($"Player have {que.figure}. Choose next.");
+                PassivePlayer = NextPlayer(PassivePlayer);
+                if (PassivePlayer == ActivePlayer) PassivePlayer = NextPlayer(PassivePlayer);
+                Refresh();
+                Message($"Player have these cards. Next Player");
                 return true;
             }
-            Message($"Player have {que.figure}. Choose next.");
+            Message($"Player have. Choose next.");
             return true;
 
         }
