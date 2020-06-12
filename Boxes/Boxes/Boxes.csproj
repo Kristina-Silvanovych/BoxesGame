@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GraphicsPlayer.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Boxes.cs" />
     <Compile Include="Card.cs" />

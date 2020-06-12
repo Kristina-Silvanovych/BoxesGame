@@ -15,6 +15,7 @@ namespace Boxes
         Card activeCard;
         Boxes game;
         Player mover;
+        bool right = false;
         public Form1()
         {
             InitializeComponent();
@@ -68,22 +69,19 @@ namespace Boxes
         {
             game = new Boxes( new GraphicsCardSet(pnlDeck,36),
                 MarkAcPlayer,MarkPasPlayer, ShowMessage,
-                new Player("Bob", new GraphicsCardSet(pnlPlayer1)),
-                new Player("Tom", new GraphicsCardSet(pnlPlayer2)),
-                new Player("Jack", new GraphicsCardSet(pnlPlayer3)),
-                new Player("Max", new GraphicsCardSet(pnlPlayer4)));
+                new GraphicsPlayer("Bob", new GraphicsCardSet(pnlPlayer1), lbl1),
+                new GraphicsPlayer("Tom", new GraphicsCardSet(pnlPlayer2),lbl2),
+                new GraphicsPlayer("Jack", new GraphicsCardSet(pnlPlayer3),lbl3),
+                new GraphicsPlayer("Max", new GraphicsCardSet(pnlPlayer4),lbl4));
 
             game.Deal();
             button1.Enabled = false;
-            lbl1.Text = "Bob";
-            lbl2.Text = "Tom";
-            lbl3.Text = "Jack";
-            lbl4.Text = "Max";
-
         }
 
         private void ShowMessage(string message)
         {
+            lblMessage.ForeColor = right ? Color.Green : Color.Red;
+
             lblMessage.Text = message;
         }
 
@@ -97,6 +95,7 @@ namespace Boxes
         {
             GraphicsCardSet passivePlayerCards = (GraphicsCardSet)passivePlayer.PlayerCards;
             passivePlayerCards.Panel.BorderStyle = BorderStyle.FixedSingle;
+            ((GraphicsPlayer)passivePlayer).LabelName.BackColor = Color.Green;
         }
         private void MarkAcPlayer(Player activePlayer)
         {
@@ -111,6 +110,8 @@ namespace Boxes
                         GraphicCard graphicCard = (GraphicCard)card;
                         graphicCard.Opened = true;
                     }
+
+                    ((GraphicsPlayer)player).LabelName.BackColor = Color.Red;
                 }
                 else
                 {
@@ -120,6 +121,7 @@ namespace Boxes
                         GraphicCard graphicCard = (GraphicCard)card;
                         graphicCard.Opened = false;
                     }
+                    ((GraphicsPlayer)player).LabelName.BackColor = Color.White;
                 }
             }
         }
@@ -127,7 +129,7 @@ namespace Boxes
         private void button2_Click(object sender, EventArgs e)
         {
             CardFigure cardFigure = Card.GetFigure(cmbFigure.Text);
-            bool right = false;
+
 
             List<CardSuit> suits = new List<CardSuit>();
             if (cmbAmount.Text == "")
@@ -147,7 +149,7 @@ namespace Boxes
                 else
                     right = game.Request(new Question(cardFigure, Convert.ToInt32(cmbAmount.Text), suits));
             }
-            if (!right)
+            if (!right || (right && suits.Count != 0))
             {
                 cmbAmount.Text = "";
                 cmbFigure.Text = "";

@@ -10,7 +10,7 @@ namespace Boxes
     {
         public string Name { get; set; }
         public CardSet PlayerCards { get; set; }
-        public int Point { get; set; }
+        public virtual int Point { get; set; }
         public Player(string name)
         {
             Name = name;
