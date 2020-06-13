@@ -63,10 +63,14 @@ namespace Boxes
         {
             btncheck.Enabled = cmbFigure.Text != "";
             cmbAmount.Visible = cmbFigure.Text != "";
+            btncheck.Top = cmbFigure.Top;
+            btncheck.Left = 870;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            cmbFigure.Visible = true;
+            btncheck.Visible = true;
             game = new Boxes( new GraphicsCardSet(pnlDeck,36),
                 MarkAcPlayer,MarkPasPlayer, ShowMessage,
                 new GraphicsPlayer("Bob", new GraphicsCardSet(pnlPlayer1), lbl1),
@@ -80,7 +84,7 @@ namespace Boxes
 
         private void ShowMessage(string message)
         {
-            lblMessage.ForeColor = right ? Color.Green : Color.Red;
+            //lblMessage.ForeColor = right ? Color.Red : Color.Green;
 
             lblMessage.Text = message;
         }
@@ -94,13 +98,13 @@ namespace Boxes
         private void MarkPasPlayer(Player passivePlayer)
         {
             GraphicsCardSet passivePlayerCards = (GraphicsCardSet)passivePlayer.PlayerCards;
-            passivePlayerCards.Panel.BorderStyle = BorderStyle.FixedSingle;
-            ((GraphicsPlayer)passivePlayer).LabelName.BackColor = Color.Green;
+            passivePlayerCards.Panel.BackColor = Color.Red;
+            ((GraphicsPlayer)passivePlayer).LabelName.BackColor = Color.Salmon;
         }
         private void MarkAcPlayer(Player activePlayer)
         {
             GraphicsCardSet activePlayerCards = (GraphicsCardSet)activePlayer.PlayerCards;
-            activePlayerCards.Panel.BorderStyle = BorderStyle.Fixed3D;
+            activePlayerCards.Panel.BackColor = Color.DarkGreen;
             foreach (var player in game.Players)
             {
                 if (player == activePlayer)
@@ -111,11 +115,11 @@ namespace Boxes
                         graphicCard.Opened = true;
                     }
 
-                    ((GraphicsPlayer)player).LabelName.BackColor = Color.Red;
+                    ((GraphicsPlayer)player).LabelName.BackColor = Color.GreenYellow;
                 }
                 else
                 {
-                    ((GraphicsCardSet)player.PlayerCards).Panel.BorderStyle = BorderStyle.None;
+                    ((GraphicsCardSet)player.PlayerCards).Panel.BackColor = Color.White;
                     foreach (var card in player.PlayerCards.Cards)
                     {
                         GraphicCard graphicCard = (GraphicCard)card;
@@ -157,6 +161,9 @@ namespace Boxes
                 checkBox2.Checked = false;
                 checkBox3.Checked = false;
                 checkBox4.Checked = false;
+                btncheck.Left = 772;
+                btncheck.Top = 373;
+
             }
         }
 
@@ -168,6 +175,32 @@ namespace Boxes
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             gbxSuits.Visible = cmbAmount.Text != "";
+            btncheck.Top = cmbAmount.Top;
+            btncheck.Left = 870;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            btncheck.Top = gbxSuits.Top;
+            btncheck.Left = 870;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            btncheck.Top = gbxSuits.Top;
+            btncheck.Left = 870;
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            btncheck.Top = gbxSuits.Top;
+            btncheck.Left = 870;
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+            btncheck.Top = gbxSuits.Top;
+            btncheck.Left = 870;
         }
     }
 }
